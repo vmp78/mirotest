@@ -1,7 +1,5 @@
-import { shallow } from "@liveblocks/client";
-
 import { Layer, XYWH } from "@/types/canvas";
-import { useStorage, useSelf } from "@liveblocks/react";
+import { useStorage, useSelf, shallow } from "@liveblocks/react/suspense";
 
 const boundingBox = (layers: Layer[]): XYWH | null=>{
     const first= layers[0];
@@ -47,7 +45,7 @@ export const useSelectionBounds =()=>{
 
     return useStorage((root)=>{
         const selectedLayers= selection
-            ?.map((layerId)=>root.layers.get(layerId)!)
+            .map((layerId) => root.layers.get(layerId)!)
             .filter(Boolean);
         
         return boundingBox(selectedLayers);
