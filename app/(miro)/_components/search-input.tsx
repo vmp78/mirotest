@@ -8,7 +8,8 @@ import {
     ChangeEvent,
     useEffect,
     useState,
-    useCallback 
+    useCallback, 
+    useMemo
 } from "react";
 
 import { Input } from "@/components/ui/input";
@@ -16,7 +17,7 @@ import { Input } from "@/components/ui/input";
 export const SearchInput = ()=>{
     const router= useRouter();
     const [value,setValue]=useState("");
-    const debouncedUrlChange = useCallback(
+    const debouncedUrlChange = useMemo(()=>
         debounce((query: string) => {
             const url = qs.stringifyUrl({
                 url: '/',

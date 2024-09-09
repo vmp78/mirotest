@@ -128,15 +128,16 @@ export const Canvas =({
             current,
         });
 
-        const ids= findIntersectingLayerWithRectangle(
-            layerIds,
-            layers,
-            origin,
-            current,   
-        );
-
-        setMyPresence({selection:ids})
-
+        if (layerIds) {
+            const ids = findIntersectingLayerWithRectangle(
+                layerIds,
+                layers,
+                origin,
+                current
+            );
+    
+            setMyPresence({ selection: ids });
+        }
     },[layerIds])
 
     const startMultiSelection = useCallback((
